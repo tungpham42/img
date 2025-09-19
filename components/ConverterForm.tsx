@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link"; // Import Link from next/link
+import Link from "next/link";
 
 type ConverterFormProps = {
   fromFormat: string;
@@ -10,6 +10,7 @@ type ConverterFormProps = {
 
 export const ConverterForm = ({ fromFormat, toFormat }: ConverterFormProps) => {
   const [file, setFile] = useState<File | null>(null);
+  const [quality, setQuality] = useState(80); // New state for image quality, default to 80
   const [loading, setLoading] = useState(false);
   const [downloadUrl, setDownloadUrl] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -20,6 +21,10 @@ export const ConverterForm = ({ fromFormat, toFormat }: ConverterFormProps) => {
       setDownloadUrl(null);
       setError(null);
     }
+  };
+
+  const handleQualityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setQuality(parseInt(e.target.value, 10));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -36,6 +41,7 @@ export const ConverterForm = ({ fromFormat, toFormat }: ConverterFormProps) => {
     formData.append("file", file);
     formData.append("fromFormat", fromFormat);
     formData.append("toFormat", toFormat);
+    formData.append("quality", quality.toString()); // Append the quality value
 
     try {
       const res = await fetch("/api/convert", {
@@ -91,6 +97,27 @@ export const ConverterForm = ({ fromFormat, toFormat }: ConverterFormProps) => {
             Selected file: {file.name}
           </p>
         )}
+
+        {/* Quality/Compression Input */}
+        <div className="mt-4 w-full">
+          <label
+            htmlFor="quality"
+            className="block text-sm font-medium text-gray-400"
+          >
+            Image Quality: {quality}%
+          </label>
+          <input
+            type="range"
+            id="quality"
+            name="quality"
+            min="1"
+            max="100"
+            value={quality}
+            onChange={handleQualityChange}
+            className="w-full h-2 bg-gray-600 rounded-lg appearance-none cursor-pointer"
+          />
+        </div>
+
         <button
           type="submit"
           className={`mt-6 w-full py-2 px-4 rounded-md font-semibold transition-colors
