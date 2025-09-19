@@ -6,9 +6,9 @@ import { getHostUrl } from "@/utils/getHostUrl";
 export async function generateMetadata(): Promise<Metadata> {
   const hostUrl = await getHostUrl();
   return {
-    title: "Image Converter | Convert Images Easily",
+    title: "Image Converter | Transform Images with Ease",
     description:
-      "A simple and efficient image converter application. Convert images between various formats like JPEG, PNG, WebP, AVIF, TIFF, and GIF.",
+      "Effortlessly convert images between formats like JPEG, PNG, WebP, AVIF, TIFF, and GIF with our fast and user-friendly tool.",
     keywords: [
       "image converter",
       "convert images",
@@ -21,9 +21,9 @@ export async function generateMetadata(): Promise<Metadata> {
       "image format conversion",
     ],
     openGraph: {
-      title: "Image Converter | Convert Images Easily",
+      title: "Image Converter | Transform Images with Ease",
       description:
-        "A simple and efficient image converter application. Convert images between various formats like JPEG, PNG, WebP, AVIF, TIFF, and GIF.",
+        "Effortlessly convert images between formats like JPEG, PNG, WebP, AVIF, TIFF, and GIF with our fast and user-friendly tool.",
       type: "website",
       url: hostUrl,
       images: [
@@ -53,25 +53,29 @@ export default function HomePage() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center p-8 bg-gray-900 text-white">
-      <h1 className="text-4xl font-bold mb-8 text-center">Image Converter</h1>
-      <p className="text-gray-400 mb-12 text-center max-w-2xl">
-        Select a conversion pair from the list below to get started. Each pair
-        has a dedicated page for converting your images.
+    <main className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-gray-900 via-purple-900 to-blue-900 text-white p-8">
+      <h1 className="leading-[1.75] text-5xl md:text-6xl font-extrabold mb-6 text-center bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-500">
+        Image Converter
+      </h1>
+      <p className="text-lg md:text-xl text-gray-300 mb-12 text-center max-w-3xl leading-relaxed">
+        Transform your images effortlessly! Choose a conversion pair below to
+        convert between formats like JPEG, PNG, WebP, and more.
       </p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-4xl">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-5xl">
         {formatPairs.map((pair, index) => (
           <Link
             key={index}
             href={`/${pair.from}/${pair.to}`}
-            className="p-6 bg-gray-800 rounded-lg shadow-md hover:bg-gray-700 transition-colors duration-200"
+            className="group relative p-6 bg-gray-800/50 backdrop-blur-md rounded-xl shadow-lg hover:shadow-xl hover:bg-gradient-to-r from-purple-600 to-blue-600 transition-all duration-300 transform hover:-translate-y-1"
           >
-            <h2 className="text-xl font-semibold">
-              {pair.from.toUpperCase()} to {pair.to.toUpperCase()}
+            <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-purple-500/30 to-blue-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <h2 className="text-2xl font-bold text-white">
+              {pair.from.toUpperCase()}{" "}
+              <span className="text-purple-400">→</span> {pair.to.toUpperCase()}
             </h2>
-            <p className="text-gray-400 mt-2">
-              Convert from .{pair.from} to .{pair.to} format.
+            <p className="text-gray-300 mt-2 text-sm">
+              Convert .{pair.from} to .{pair.to} in a snap!
             </p>
           </Link>
         ))}

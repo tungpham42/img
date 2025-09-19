@@ -19,7 +19,7 @@ export async function generateMetadata({
   return {
     title: `Convert ${from.toUpperCase()} to ${to.toUpperCase()} | Image Converter`,
     description:
-      "A simple and efficient image converter application. Convert images between various formats like JPEG, PNG, WebP, AVIF, TIFF, and GIF.",
+      "Quickly convert your images between formats like JPEG, PNG, WebP, AVIF, TIFF, and GIF with our intuitive tool.",
     keywords: [
       "image converter",
       "convert images",
@@ -34,7 +34,7 @@ export async function generateMetadata({
     openGraph: {
       title: `Convert ${from.toUpperCase()} to ${to.toUpperCase()} | Image Converter`,
       description:
-        "A simple and efficient image converter application. Convert images between various formats like JPEG, PNG, WebP, AVIF, TIFF, and GIF.",
+        "Quickly convert your images between formats like JPEG, PNG, WebP, AVIF, TIFF, and GIF with our intuitive tool.",
       type: "website",
       url: `${hostUrl}/${from}/${to}`,
       images: [
@@ -59,8 +59,14 @@ export default function ConverterPage({ params }: ConverterPageProps) {
   }
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-gray-900">
-      <ConverterForm fromFormat={from} toFormat={to} />
+    <main className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-purple-900 to-blue-900 p-8">
+      <div className="w-full max-w-3xl bg-gray-800/50 backdrop-blur-md rounded-xl shadow-xl p-8">
+        <h1 className="text-3xl md:text-4xl font-bold mb-6 text-center text-white">
+          Convert <span className="text-purple-400">{from.toUpperCase()}</span>{" "}
+          to <span className="text-blue-400">{to.toUpperCase()}</span>
+        </h1>
+        <ConverterForm fromFormat={from} toFormat={to} />
+      </div>
     </main>
   );
 }
