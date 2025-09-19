@@ -1,9 +1,16 @@
+import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 const inter = Inter({ subsets: ["latin"] });
+
+export const metadata: Metadata = {
+  title: "Image Converter",
+  description:
+    "An image converter application built with Next.js and Tailwind CSS.",
+};
 
 export default function RootLayout({
   children,

@@ -36,7 +36,7 @@ export async function generateMetadata({
       description:
         "A simple and efficient image converter application. Convert images between various formats like JPEG, PNG, WebP, AVIF, TIFF, and GIF.",
       type: "website",
-      url: `${hostUrl}/${from}/${to}`,
+      url: hostUrl,
       images: [
         {
           url: `${hostUrl}/1200x630.jpg`,
