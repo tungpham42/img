@@ -1,9 +1,9 @@
-import { Inter } from "next/font/google";
+import { Work_Sans } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 
-const inter = Inter({ subsets: ["latin"] });
+const workSans = Work_Sans({ subsets: ["latin"] });
 
 export default function RootLayout({
   children,
@@ -21,7 +21,7 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className={workSans.className}>{children}</body>
       <GoogleAnalytics ga_id="G-HHXZSNQ65X" />
     </html>
   );
